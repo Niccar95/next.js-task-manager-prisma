@@ -22,8 +22,14 @@ async function toggleTodo(id: string, complete: boolean) {
   await prisma.todo.update({ where: { id }, data: { complete } });
 }
 
+async function deleteTodo(id: string) {
+  "use server";
+  await prisma.todo.delete({ where: { id } });
+}
+
 export default async function Page() {
   //const deleted = await deleteCompletedTodos();
+
   const todos = await getTodos();
 
   console.log(todos);
@@ -40,6 +46,7 @@ export default async function Page() {
             title={todo.title}
             complete={todo.complete}
             toggleTodo={toggleTodo}
+            deleteTodo={deleteTodo}
           ></TodoItem>
         ))}
       </ul>

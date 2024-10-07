@@ -5,9 +5,21 @@ interface TodoItemProps {
   title: string;
   complete: boolean;
   toggleTodo: (id: string, complete: boolean) => void;
+  deleteTodo: (id: string) => Promise<void>;
 }
 
-const TodoItem = ({ id, complete, title, toggleTodo }: TodoItemProps) => {
+const TodoItem = ({
+  id,
+  complete,
+  title,
+  toggleTodo,
+  deleteTodo,
+}: TodoItemProps) => {
+  const handleDelete = async () => {
+    await deleteTodo(id);
+    window.location.reload();
+  };
+
   return (
     <li>
       <p>{title}</p>
@@ -18,6 +30,7 @@ const TodoItem = ({ id, complete, title, toggleTodo }: TodoItemProps) => {
         defaultChecked={complete}
       ></input>
       <label htmlFor={id}></label>
+      <button onClick={handleDelete}>Delete</button>
     </li>
   );
 };
