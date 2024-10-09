@@ -1,0 +1,16 @@
+
+.navBar {
+    padding: 2rem;
+    width: 100%;
+  }
+  
+  .navList {
+    display: flex; 
+    flex-direction: row;
+    gap: 4rem;
+    list-style: none;
+  }
+  
+  .navListItem:hover {
+    text-decoration: underline;
+  }

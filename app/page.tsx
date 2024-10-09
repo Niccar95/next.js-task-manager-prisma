@@ -1,20 +1,11 @@
+import "../app/globals.css";
+
 import TodoItem from "./components/TodoItem";
 import prisma from "./db";
-
-//prisma.todo.create({ data: {title: "test", complete: false, }})
 
 function getTodos() {
   return prisma.todo.findMany();
 }
-
-// async function deleteCompletedTodos() {
-//   const result = await prisma.todo.deleteMany({
-//     where: {
-//       complete: true,
-//     },
-//   });
-//   return result.count;
-// }
 
 async function toggleTodo(id: string, complete: boolean) {
   "use server";
@@ -28,12 +19,9 @@ async function deleteTodo(id: string) {
 }
 
 export default async function Page() {
-  //const deleted = await deleteCompletedTodos();
-
   const todos = await getTodos();
 
   console.log(todos);
-  //console.log(deleted);
 
   return (
     <>

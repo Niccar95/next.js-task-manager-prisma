@@ -4,21 +4,20 @@ import React from "react";
 const Navbar = () => {
   return (
     <>
-      <div>
-        <ul>
-          <li>
+      <div className="navBar">
+        <ul className="navList">
+          <li className="navListItem">
             <Link href="/">Home</Link>
           </li>
-          <li>
+          <li className="navListItem">
             <Link href="/pages/new">New</Link>
           </li>
-          <li>
+          <li className="navListItem">
             <Link href="/pages/contact">Contact</Link>
           </li>
-          <li>
+          <li className="navListItem">
             <Link href="/pages/about">About</Link>
           </li>
-         
         </ul>
       </div>
     </>

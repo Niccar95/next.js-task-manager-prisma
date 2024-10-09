@@ -21,8 +21,8 @@ const TodoItem = ({
   };
 
   return (
-    <li>
-      <p>{title}</p>
+    <li className="listItem">
+      <p className={complete ? "completed" : ""}>{title}</p>
       <input
         id={id}
         type="checkbox"
