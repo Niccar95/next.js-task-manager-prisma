@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 interface TodoItemProps {
   id: string;
   title: string;
@@ -15,6 +17,14 @@ const TodoItem = ({
   toggleTodo,
   deleteTodo,
 }: TodoItemProps) => {
+  const [isCompleted, setIsCompleted] = useState(complete);
+
+  const handleToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updatedComplete = e.target.checked;
+    setIsCompleted(updatedComplete);
+    toggleTodo(id, updatedComplete);
+  };
+
   const handleDelete = async () => {
     await deleteTodo(id);
     window.location.reload();
@@ -22,11 +32,11 @@ const TodoItem = ({
 
   return (
     <li className="listItem">
-      <p className={complete ? "completed" : ""}>{title}</p>
+      <p className={isCompleted ? "completed" : ""}>{title}</p>
       <input
         id={id}
         type="checkbox"
-        onChange={(e) => toggleTodo(id, e.target.checked)}
+        onChange={handleToggle}
         defaultChecked={complete}
       ></input>
       <label htmlFor={id}></label>
