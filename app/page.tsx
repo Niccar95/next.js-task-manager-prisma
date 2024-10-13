@@ -1,7 +1,6 @@
 import "../app/globals.css";
-
-import TodoItem from "./components/TodoItem";
 import prisma from "./db";
+import TodoList from "./components/TodoList";
 
 function getTodos() {
   return prisma.todo.findMany();
@@ -26,18 +25,11 @@ export default async function Page() {
   return (
     <>
       <h1>To Do</h1>
-      <ul>
-        {todos.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            id={todo.id}
-            title={todo.title}
-            complete={todo.complete}
-            toggleTodo={toggleTodo}
-            deleteTodo={deleteTodo}
-          ></TodoItem>
-        ))}
-      </ul>
+      <TodoList
+        todos={todos}
+        toggleTodo={toggleTodo}
+        deleteTodo={deleteTodo}
+      ></TodoList>
     </>
   );
 }
