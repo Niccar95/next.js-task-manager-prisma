@@ -1,0 +1,23 @@
+form {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    gap: 1rem;
+  }
+
+  .textInput {
+    padding: 1rem;
+    font-size: 1rem;
+    border: none;
+    box-shadow: inset 0px 0px 3px 1px rgba(0, 0, 0, 0.3);
+  }
+
+  .submitSection {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .cancelLink:hover {
+    text-decoration: underline;
+  }

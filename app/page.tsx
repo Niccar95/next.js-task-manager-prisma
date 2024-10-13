@@ -20,8 +20,6 @@ async function deleteTodo(id: string) {
 export default async function Page() {
   const todos = await getTodos();
 
-  console.log(todos);
-
   return (
     <>
       <h1>To Do</h1>

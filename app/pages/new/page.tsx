@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import React from "react";
 import prisma from "@/app/db";
+import "../../form.css";
 
 async function createTodo(data: FormData) {
   "use server";
@@ -21,11 +22,19 @@ const page = () => {
     <>
       <h1>New</h1>
       <form action={createTodo}>
-        <input type="text" name="title"></input>
-        <div>
-          <Link href="..">Cancel</Link>
+        <input
+          className="textInput"
+          type="text"
+          name="title"
+          placeholder="Enter your task"
+          maxLength={30}
+        ></input>
+        <section className="submitSection">
+          <Link className="cancelLink" href="..">
+            Cancel
+          </Link>
           <button type="submit">Add</button>
-        </div>
+        </section>
       </form>
     </>
   );

@@ -31,7 +31,7 @@ const TodoItem = ({
   };
 
   return (
-    <li className="listItem">
+    <>
       <p className={isCompleted ? "completed" : ""}>{title}</p>
       <input
         id={id}
@@ -41,7 +41,7 @@ const TodoItem = ({
       ></input>
       <label htmlFor={id}></label>
       <button onClick={handleDelete}>Delete</button>
-    </li>
+    </>
   );
 };
 

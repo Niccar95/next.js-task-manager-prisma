@@ -1,12 +1,10 @@
 
-
 html,
 body {
   overflow-x: hidden;
 }
 
 body {
-
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -21,25 +19,36 @@ main {
   margin: 0;
 }
 
+h1 {
+  margin-bottom: 2rem;
+}
+
 a {
-  color: inherit;
+  color: rgb(70, 70, 70);
   text-decoration: none;
+  font-weight: bold;
 }
 
 
 ul {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
   list-style: none;
 }
 
 
 .listItem {
   display: flex;
+  align-items: center;
   gap: 1rem;
-  padding: 2rem;
-  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.2);
+  padding: 2rem; 
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.2);
+  cursor:grab;
+}
+
+.listItem:active {
+  cursor: grabbing;
 }
 
 .completed {
@@ -47,5 +56,19 @@ ul {
   color: gray; 
 }
 
+
+button {
+background-color: #151DFF;
+color: white;
+font-weight: bold;
+border: none;
+padding: 10px 30px;
+cursor: pointer;
+}
+
+
+button:hover {
+  background-color: #0008e2;
+  }
 
 
