@@ -1,5 +1,5 @@
 "use client";
-
+import "../../app/globals.css";
 import { useState } from "react";
 
 interface TodoItemProps {
@@ -34,6 +34,7 @@ const TodoItem = ({
     <>
       <p className={isCompleted ? "completed" : ""}>{title}</p>
       <input
+        className="checkBox"
         id={id}
         type="checkbox"
         onChange={handleToggle}
