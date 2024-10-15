@@ -2,8 +2,9 @@
 .navBar {
     display: flex;
     justify-content: space-between;
-    padding: 2rem;
     width: 100%;
+    padding-bottom: 2rem;
+    border-bottom: solid rgb(192, 192, 192) 1px;
   }
   
   .navList {

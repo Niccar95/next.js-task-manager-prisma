@@ -1,9 +1,9 @@
 import prisma from "@/app/db";
 import { connectToDatabase } from "@/app/helpers/server-helpers";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 
-export const POST = async (req: Request) => {
+export const POST = async (req: NextRequest) => {
   try {
     const { userName, password } = await req.json();
     if (!userName || !password) {

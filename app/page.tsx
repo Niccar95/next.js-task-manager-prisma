@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import "../app/form.css";
 import { useRouter } from "next/navigation";
 
@@ -8,7 +8,7 @@ const Page = () => {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
     try {
       const response = await fetch("/pages/api/auth/login", {

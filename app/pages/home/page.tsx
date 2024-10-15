@@ -1,6 +1,7 @@
 import "../../globals.css";
 import prisma from "../../db";
 import TodoList from "../../components/TodoList";
+import Navbar from "@/app/components/Navbar";
 
 function getTodos() {
   return prisma.todo.findMany();
@@ -22,6 +23,7 @@ export default async function Page() {
 
   return (
     <>
+      <Navbar></Navbar>
       <h1>To Do</h1>
       <TodoList
         todos={todos}

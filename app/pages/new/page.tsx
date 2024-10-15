@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import prisma from "@/app/db";
 import "../../form.css";
+import Navbar from "@/app/components/Navbar";
 
 async function createTodo(data: FormData) {
   "use server";
@@ -20,6 +21,7 @@ async function createTodo(data: FormData) {
 const page = () => {
   return (
     <>
+      <Navbar></Navbar>
       <h1>New</h1>
       <form action={createTodo}>
         <input

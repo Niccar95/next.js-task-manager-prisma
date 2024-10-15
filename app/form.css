@@ -21,3 +21,17 @@ form {
   .cancelLink:hover {
     text-decoration: underline;
   }
+
+  button {
+    background-color: #151DFF;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 10px 30px;
+    cursor: pointer;
+    }
+    
+    
+    button:hover {
+      background-color: #0008e2;
+      }
