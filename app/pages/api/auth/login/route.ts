@@ -8,7 +8,7 @@ export const POST = async (req: NextRequest) => {
     const { userName, password } = await req.json();
     if (!userName || !password) {
       return NextResponse.json(
-        { message: "Missing username or password" },
+        { message: "Missing username or password." },
         { status: 422 }
       );
     }
@@ -19,12 +19,12 @@ export const POST = async (req: NextRequest) => {
     });
 
     if (!user) {
-      return NextResponse.json({ message: "No user found" }, { status: 404 });
+      return NextResponse.json({ message: "No user found." }, { status: 404 });
     }
 
     if (!user.hashedPassword) {
       return NextResponse.json(
-        { message: "User has no password set" },
+        { message: "User has no password set." },
         { status: 400 }
       );
     }
@@ -33,7 +33,7 @@ export const POST = async (req: NextRequest) => {
 
     if (!passwordMatch) {
       return NextResponse.json(
-        { message: "Invalid password" },
+        { message: "Invalid password." },
         { status: 401 }
       );
     }
