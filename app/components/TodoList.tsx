@@ -6,16 +6,49 @@ import { Reorder } from "framer-motion";
 
 type TodoListProps = {
   todos: Todo[];
-  toggleTodo: (id: string, complete: boolean) => void;
-  deleteTodo: (id: string) => Promise<void>;
 };
 
-const TodoList = ({ todos, toggleTodo, deleteTodo }: TodoListProps) => {
+const TodoList = ({ todos }: TodoListProps) => {
   const [todoList, setTodos] = useState<Todo[]>(todos);
+
+  const handleToggleTodo = async (id: string, complete: boolean) => {
+    try {
+      await fetch(`/pages/api/todos`, {
+        method: "PATCH",
+        body: JSON.stringify({ id, complete }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const updatedTodos = todoList.map((todo) =>
+        todo.id === id ? { ...todo, complete } : todo
+      );
+      setTodos(updatedTodos);
+    } catch (error) {
+      console.error("Failed to toggle todo", error);
+    }
+  };
+
+  const handleDeleteTodo = async (id: string) => {
+    try {
+      await fetch(`/pages/api/todos`, {
+        method: "DELETE",
+        body: JSON.stringify({ id }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const updatedTodos = todoList.filter((todo) => todo.id !== id);
+      setTodos(updatedTodos);
+    } catch (error) {
+      console.error("Failed to delete todo", error);
+    }
+  };
+
   return (
     <>
       <ul>
-        <Reorder.Group values={todos} onReorder={setTodos}>
+        <Reorder.Group values={todoList} onReorder={setTodos}>
           {todoList.map((todo) => (
             <Reorder.Item
               className="listItem"
@@ -28,8 +61,8 @@ const TodoList = ({ todos, toggleTodo, deleteTodo }: TodoListProps) => {
                 id={todo.id}
                 title={todo.title}
                 complete={todo.complete}
-                toggleTodo={toggleTodo}
-                deleteTodo={deleteTodo}
+                toggleTodo={handleToggleTodo}
+                deleteTodo={handleDeleteTodo}
               ></TodoItem>
             </Reorder.Item>
           ))}

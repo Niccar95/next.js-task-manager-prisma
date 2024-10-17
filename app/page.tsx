@@ -1,6 +1,7 @@
 "use client";
 import React, { FormEvent, useState } from "react";
 import "../app/form.css";
+import "../app/globals.css";
 import { useRouter } from "next/navigation";
 
 const Page = () => {

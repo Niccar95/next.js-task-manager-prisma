@@ -25,9 +25,8 @@ const TodoItem = ({
     toggleTodo(id, updatedComplete);
   };
 
-  const handleDelete = async () => {
-    await deleteTodo(id);
-    window.location.reload();
+  const handleDelete = () => {
+    deleteTodo(id);
   };
 
   return (

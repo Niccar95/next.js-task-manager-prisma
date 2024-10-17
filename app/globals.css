@@ -5,7 +5,11 @@ body {
 }
 
 body {
+  min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 main {
@@ -67,7 +71,7 @@ background-color: #151DFF;
 color: white;
 font-weight: bold;
 border: none;
-padding: 10px 30px;
+padding: 1rem 3rem;
 cursor: pointer;
 }
 
