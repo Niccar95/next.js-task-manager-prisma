@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import TodoItem from "./TodoItem";
 import { Todo } from "@prisma/client";
 import { Reorder } from "framer-motion";
+import { getNextOrder } from "../utils/todoUtils";
 
 type TodoListProps = {
   todos: Todo[];
@@ -29,6 +30,23 @@ const TodoList = ({ todos }: TodoListProps) => {
     }
   };
 
+  const handleReorder = async (newOrder: Todo[]) => {
+    setTodos(newOrder);
+    try {
+      const newOrder = getNextOrder(todoList);
+
+      await fetch(`/pages/api/todos`, {
+        method: "POST",
+        body: JSON.stringify({ todos: newOrder }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    } catch (error) {
+      console.error("Failed to reorder todos", error);
+    }
+  };
+
   const handleDeleteTodo = async (id: string) => {
     try {
       await fetch(`/pages/api/todos`, {
@@ -39,7 +57,19 @@ const TodoList = ({ todos }: TodoListProps) => {
         },
       });
       const updatedTodos = todoList.filter((todo) => todo.id !== id);
+
       setTodos(updatedTodos);
+
+      const newOrder = getNextOrder(updatedTodos);
+      console.log(newOrder);
+
+      await fetch(`/pages/api/todos`, {
+        method: "POST",
+        body: JSON.stringify({ todos: newOrder }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
     } catch (error) {
       console.error("Failed to delete todo", error);
     }
@@ -48,7 +78,7 @@ const TodoList = ({ todos }: TodoListProps) => {
   return (
     <>
       <ul>
-        <Reorder.Group values={todoList} onReorder={setTodos}>
+        <Reorder.Group values={todoList} onReorder={handleReorder}>
           {todoList.map((todo) => (
             <Reorder.Item
               className="listItem"

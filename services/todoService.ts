@@ -1,30 +1,43 @@
 import prisma from "@/app/db";
 
-export async function createTodo(data: FormData) {
+export const createTodo = async (data: FormData) => {
   const title = data.get("title")?.valueOf();
   if (typeof title !== "string" || title.length === 0) {
     throw new Error("Invalid title");
   }
 
-  return await prisma.todo.create({ data: { title, complete: false } });
-}
+  const todos = await getTodos();
 
-export async function getTodos() {
+  const order =
+    todos.length > 0 ? Math.max(...todos.map((todo) => todo.order)) + 1 : 0;
+
+  return await prisma.todo.create({ data: { title, complete: false, order } });
+};
+
+export const getTodos = async () => {
   "use server";
   return await prisma.todo.findMany();
-}
+};
 
-export async function toggleTodo(id: string, complete: boolean) {
+export const toggleTodo = async (id: string, complete: boolean) => {
   "use server";
   return await prisma.todo.update({
     where: { id },
     data: { complete },
   });
-}
+};
 
-export async function deleteTodo(id: string) {
+export const updateOrder = async (id: string, order: number) => {
+  "use server";
+  return await prisma.todo.update({
+    where: { id },
+    data: { order },
+  });
+};
+
+export const deleteTodo = async (id: string) => {
   "use server";
   return await prisma.todo.delete({
     where: { id },
   });
-}
+};

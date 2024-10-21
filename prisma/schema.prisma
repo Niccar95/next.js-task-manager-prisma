@@ -16,6 +16,7 @@ model Todo {
   complete Boolean
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  order Int
 }
 
 model User {
