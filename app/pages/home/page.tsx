@@ -5,7 +5,11 @@ import prisma from "@/app/db";
 
 const fetchTodos = async () => {
   "use server";
-  return await prisma.todo.findMany();
+  return await prisma.todo.findMany({
+    orderBy: {
+      order: "asc",
+    },
+  });
 };
 
 export default async function Page() {

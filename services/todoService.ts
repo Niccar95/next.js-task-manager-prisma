@@ -8,8 +8,7 @@ export const createTodo = async (data: FormData) => {
 
   const todos = await getTodos();
 
-  const order =
-    todos.length > 0 ? Math.max(...todos.map((todo) => todo.order)) + 1 : 0;
+  const order = todos.length;
 
   return await prisma.todo.create({ data: { title, complete: false, order } });
 };
