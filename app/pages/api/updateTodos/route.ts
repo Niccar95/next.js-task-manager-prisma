@@ -13,10 +13,13 @@ export const POST = async (req: Request) => {
     }
 
     const updatePromises = todos.map((todo) => {
-      updateOrder(todo.id, todo.order);
+      console.log(`Updating order for todo: ${todo.id} to ${todo.order}`);
+      return updateOrder(todo.id, todo.order);
     });
 
     await Promise.all(updatePromises);
+
+    console.log("Order update successful");
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {

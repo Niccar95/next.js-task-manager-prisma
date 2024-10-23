@@ -1,5 +1,14 @@
 import prisma from "@/app/db";
 
+export const getTodos = async () => {
+  "use server";
+  return await prisma.todo.findMany({
+    orderBy: {
+      order: "asc",
+    },
+  });
+};
+
 export const createTodo = async (data: FormData) => {
   const title = data.get("title")?.valueOf();
   if (typeof title !== "string" || title.length === 0) {
@@ -11,11 +20,6 @@ export const createTodo = async (data: FormData) => {
   const order = todos.length;
 
   return await prisma.todo.create({ data: { title, complete: false, order } });
-};
-
-export const getTodos = async () => {
-  "use server";
-  return await prisma.todo.findMany();
 };
 
 export const toggleTodo = async (id: string, complete: boolean) => {
