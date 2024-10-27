@@ -1,0 +1,14 @@
+.columnWrapper {
+    display: flex;
+    gap: 2rem;
+    border: solid black;
+    overflow-x: auto;
+    padding: 2rem;
+    min-height: 400px;
+}
+
+.column {
+    width: 400px;
+    border: solid black;
+    padding: 2rem;
+}

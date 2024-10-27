@@ -17,10 +17,20 @@ model Todo {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   order Int
+  columnId String @db.ObjectId 
+  column Column @relation(fields: [columnId], references: [id]) 
+}
+
+model Column {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  todos Todo[]  
 }
 
 model User {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(auto()) @map("_id") @db.ObjectId
   userName String
   hashedPassword String?
 }

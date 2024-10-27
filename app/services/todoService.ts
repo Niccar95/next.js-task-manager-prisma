@@ -9,7 +9,7 @@ export const getTodos = async () => {
   });
 };
 
-export const createTodo = async (data: FormData) => {
+export const createTodo = async (data: FormData, columnId: string) => {
   const title = data.get("title")?.valueOf();
   if (typeof title !== "string" || title.length === 0) {
     throw new Error("Invalid title");
@@ -19,7 +19,9 @@ export const createTodo = async (data: FormData) => {
 
   const order = todos.length;
 
-  return await prisma.todo.create({ data: { title, complete: false, order } });
+  return await prisma.todo.create({
+    data: { title, complete: false, order, columnId },
+  });
 };
 
 export const toggleTodo = async (id: string, complete: boolean) => {

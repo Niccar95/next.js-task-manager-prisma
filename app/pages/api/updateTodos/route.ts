@@ -1,4 +1,4 @@
-import { updateOrder } from "@/services/todoService";
+import { updateOrder } from "@/app/services/todoService";
 import { NextResponse } from "next/server";
 
 export const POST = async (req: Request) => {

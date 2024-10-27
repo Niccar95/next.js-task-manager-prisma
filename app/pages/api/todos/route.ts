@@ -3,7 +3,7 @@ import {
   deleteTodo,
   getTodos,
   toggleTodo,
-} from "@/services/todoService";
+} from "@/app/services/todoService";
 import { NextResponse } from "next/server";
 
 export const GET = async () => {

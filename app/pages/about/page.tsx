@@ -1,5 +1,6 @@
 import Navbar from "@/app/components/Navbar";
 import React from "react";
+import "../../globals.css";
 
 const page = () => {
   return (
