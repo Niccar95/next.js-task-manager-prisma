@@ -9,6 +9,15 @@ export const getTodos = async () => {
   });
 };
 
+export const getTodosByColumnId = async (columnId: string) => {
+  return await prisma.todo.findMany({
+    where: { columnId },
+    orderBy: {
+      order: "asc",
+    },
+  });
+};
+
 export const createTodo = async (title: string, columnId: string) => {
   "use server";
 

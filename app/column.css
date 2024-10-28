@@ -8,6 +8,9 @@
 }
 
 .column {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
     width: 400px;
     border: solid black;
     padding: 2rem;

@@ -5,13 +5,17 @@ import { Reorder } from "framer-motion";
 import { getNextOrder } from "../utils/todoUtils";
 import { useEffect, useState } from "react";
 
-const TodoList = () => {
+interface ITodoListProps {
+  columnId: string;
+}
+
+const TodoList = ({ columnId }: ITodoListProps) => {
   const [todoList, setTodoList] = useState<Todo[]>([]);
 
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const response = await fetch(`/pages/api/todos`, {
+        const response = await fetch(`/pages/api/todos/${columnId}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -25,7 +29,7 @@ const TodoList = () => {
       }
     };
     fetchTodos();
-  }, []);
+  }, [columnId]);
 
   const handleToggleTodo = async (id: string, complete: boolean) => {
     try {

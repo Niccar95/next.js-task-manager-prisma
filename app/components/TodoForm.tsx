@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 
 interface IColumnIdProps {
   columnId: string;
@@ -8,7 +8,7 @@ interface IColumnIdProps {
 const TodoForm = ({ columnId }: IColumnIdProps) => {
   const [title, setTitle] = useState("");
 
-  const handleCreateTodo = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleCreateTodo = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const response = await fetch(`/pages/api/todos`, {

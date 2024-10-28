@@ -1,6 +1,5 @@
 "use client";
 import "../../globals.css";
-import TodoList from "../../components/TodoList";
 import Navbar from "@/app/components/Navbar";
 import { Column } from "@prisma/client";
 import ColumnList from "@/app/components/ColumnList";
@@ -48,7 +47,6 @@ export default function Page() {
       <h1>To Do</h1>
       <button onClick={handleCreateColumn}>+</button>
       <ColumnList columns={columns}></ColumnList>
-      <TodoList></TodoList>
     </>
   );
 }
