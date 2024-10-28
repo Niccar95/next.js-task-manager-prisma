@@ -21,9 +21,9 @@ export const GET = async () => {
 
 export const POST = async (req: Request) => {
   try {
-    const formData = await req.formData();
+    const { title, columnId } = await req.json();
 
-    const newTodo = await createTodo(formData);
+    const newTodo = await createTodo(title, columnId);
     return NextResponse.json(newTodo, { status: 201 });
   } catch (error) {
     const err = error as Error;

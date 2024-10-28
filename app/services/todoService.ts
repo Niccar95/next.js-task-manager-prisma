@@ -9,8 +9,9 @@ export const getTodos = async () => {
   });
 };
 
-export const createTodo = async (data: FormData, columnId: string) => {
-  const title = data.get("title")?.valueOf();
+export const createTodo = async (title: string, columnId: string) => {
+  "use server";
+
   if (typeof title !== "string" || title.length === 0) {
     throw new Error("Invalid title");
   }
