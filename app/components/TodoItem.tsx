@@ -1,6 +1,7 @@
 "use client";
 import "../../app/globals.css";
 import { useState } from "react";
+import { CirclePicker } from "react-color";
 
 interface TodoItemProps {
   id: string;
@@ -18,6 +19,7 @@ const TodoItem = ({
   deleteTodo,
 }: TodoItemProps) => {
   const [isCompleted, setIsCompleted] = useState(complete);
+  const [isTrue, setIstrue] = useState(false);
 
   const handleToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updatedComplete = e.target.checked;
@@ -27,6 +29,14 @@ const TodoItem = ({
 
   const handleDelete = () => {
     deleteTodo(id);
+  };
+
+  const handleClick = () => {
+    if (!isTrue) {
+      setIstrue(true);
+    } else {
+      setIstrue(false);
+    }
   };
 
   return (
@@ -41,6 +51,14 @@ const TodoItem = ({
       ></input>
       <label htmlFor={id}></label>
       <button onClick={handleDelete}>Delete</button>
+
+      <button onClick={handleClick}>Edit</button>
+
+      {isTrue && (
+        <div>
+          <CirclePicker></CirclePicker>
+        </div>
+      )}
     </>
   );
 };
