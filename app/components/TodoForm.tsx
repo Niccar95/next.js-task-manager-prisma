@@ -1,11 +1,11 @@
-import Link from "next/link";
 import React, { FormEvent, useState } from "react";
-
+import { Todo } from "@prisma/client";
 interface IColumnIdProps {
   columnId: string;
+  onAddTodo: (newTodo: Todo) => void;
 }
 
-const TodoForm = ({ columnId }: IColumnIdProps) => {
+const TodoForm = ({ columnId, onAddTodo }: IColumnIdProps) => {
   const [title, setTitle] = useState("");
 
   const handleCreateTodo = async (event: FormEvent<HTMLFormElement>) => {
@@ -20,6 +20,8 @@ const TodoForm = ({ columnId }: IColumnIdProps) => {
     });
 
     if (response.ok) {
+      const newTodo = await response.json();
+      onAddTodo(newTodo);
       setTitle("");
     } else {
       console.error("Failed to create todo");
@@ -27,24 +29,20 @@ const TodoForm = ({ columnId }: IColumnIdProps) => {
   };
 
   return (
-    <>
-      <form onSubmit={handleCreateTodo}>
-        <input
-          className="textInput"
-          type="text"
-          name="title"
-          placeholder="Enter your task"
-          maxLength={30}
-          onChange={(e) => setTitle(e.target.value)}
-        ></input>
-        <section className="submitSection">
-          <Link className="cancelLink" href="..">
-            Cancel
-          </Link>
-          <button type="submit">Add</button>
-        </section>
-      </form>
-    </>
+    <form onSubmit={handleCreateTodo}>
+      <input
+        className="textInput"
+        type="text"
+        name="title"
+        placeholder="Enter your task"
+        maxLength={30}
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <section className="submitSection">
+        <button type="submit">Add</button>
+      </section>
+    </form>
   );
 };
 

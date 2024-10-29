@@ -7,7 +7,7 @@ interface TodoItemProps {
   title: string;
   complete: boolean;
   toggleTodo: (id: string, complete: boolean) => void;
-  deleteTodo: (id: string) => Promise<void>;
+  deleteTodo: (id: string) => void;
 }
 
 const TodoItem = ({
