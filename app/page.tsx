@@ -5,13 +5,15 @@ import "../app/globals.css";
 import { useRouter } from "next/navigation";
 
 const Page = () => {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [loader, setLoader] = useState<boolean>(false);
   const router = useRouter();
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
+    setLoader(true);
     try {
       const response = await fetch("/pages/api/auth/login", {
         method: "POST",
@@ -22,6 +24,7 @@ const Page = () => {
       });
       const result = await response.json();
       if (response.status === 200) {
+        setLoader(false);
         router.push("/pages/home");
       } else {
         console.error(result.message);
@@ -61,6 +64,12 @@ const Page = () => {
         {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
 
         <button type="submit">Login</button>
+
+        {loader && (
+          <div className="spinnerWrapper">
+            <div className="spinner"></div>
+          </div>
+        )}
       </form>
     </>
   );

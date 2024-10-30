@@ -93,6 +93,41 @@ button:hover {
     padding: 2em;
   }
 
+
+  .editModal {
+    background-color: white;
+    padding: 2em;
+    box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.2);
+  }
+
+
+  .spinnerWrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+
+  .spinner {
+    width: 100px;
+    height: 100px;
+    border: 10px solid rgb(57, 126, 255);
+    border-radius: 50%;
+    border-top: 10px solid rgb(255, 255, 255);
+    animation: rotate 1s infinite;
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    } 
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+
+  
+
   
 
 

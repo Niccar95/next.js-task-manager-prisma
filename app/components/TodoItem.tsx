@@ -1,5 +1,6 @@
 "use client";
 import "../../app/globals.css";
+import "../../app/buttons.css";
 import { useState } from "react";
 import { CirclePicker } from "react-color";
 
@@ -19,7 +20,7 @@ const TodoItem = ({
   deleteTodo,
 }: TodoItemProps) => {
   const [isCompleted, setIsCompleted] = useState(complete);
-  const [isTrue, setIstrue] = useState(false);
+  const [isEditing, setIstrue] = useState(false);
 
   const handleToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updatedComplete = e.target.checked;
@@ -32,7 +33,7 @@ const TodoItem = ({
   };
 
   const handleClick = () => {
-    if (!isTrue) {
+    if (!isEditing) {
       setIstrue(true);
     } else {
       setIstrue(false);
@@ -50,12 +51,16 @@ const TodoItem = ({
         defaultChecked={complete}
       ></input>
       <label htmlFor={id}></label>
-      <button onClick={handleDelete}>Delete</button>
+      <button className="todoButton" onClick={handleDelete}>
+        Delete
+      </button>
 
-      <button onClick={handleClick}>Edit</button>
+      <button className="todoButton" onClick={handleClick}>
+        Edit
+      </button>
 
-      {isTrue && (
-        <div>
+      {isEditing && (
+        <div className="editModal">
           <CirclePicker></CirclePicker>
         </div>
       )}
