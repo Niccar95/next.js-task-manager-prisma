@@ -40,7 +40,7 @@ const TodoForm = ({ columnId, onAddTodo }: IColumnIdProps) => {
         onChange={(e) => setTitle(e.target.value)}
       />
       <section className="submitSection">
-        <button type="submit">Add</button>
+        <button type="submit">Add Task</button>
       </section>
     </form>
   );

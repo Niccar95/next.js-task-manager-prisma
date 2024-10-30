@@ -2,6 +2,7 @@
 import { Column } from "@prisma/client";
 import React from "react";
 import ColumnItem from "./ColumnItem";
+import "../../app/column.css";
 
 interface IColumnListProps {
   columns: Column[];

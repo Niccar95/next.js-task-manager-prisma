@@ -4,6 +4,8 @@ import "../../app/buttons.css";
 import "../../app/todoItem.css";
 import { useState } from "react";
 import { CirclePicker } from "react-color";
+import Image from "next/image";
+import pencilImage from "../../app/public/pencil.svg";
 
 interface TodoItemProps {
   id: string;
@@ -62,6 +64,12 @@ const TodoItem = ({
 
           <button className="todoButton" onClick={handleClick}>
             Edit
+            <Image
+              src={pencilImage}
+              alt="pencil"
+              width={10}
+              height={10}
+            ></Image>
           </button>
         </section>
 

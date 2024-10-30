@@ -44,8 +44,8 @@ export default function Page() {
   return (
     <>
       <Navbar></Navbar>
-      <h1>To Do</h1>
-      <button onClick={handleCreateColumn}>+</button>
+      <h1>Task Manager</h1>
+      <button onClick={handleCreateColumn}>Add Column</button>
       <ColumnList columns={columns}></ColumnList>
     </>
   );
