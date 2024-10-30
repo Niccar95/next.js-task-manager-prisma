@@ -20,12 +20,7 @@ const TodoList = ({
       <ul>
         <Reorder.Group values={todoList} onReorder={onReorder}>
           {todoList.map((todo) => (
-            <Reorder.Item
-              className="listItem"
-              as="li"
-              value={todo}
-              key={todo.id}
-            >
+            <Reorder.Item value={todo} key={todo.id}>
               <TodoItem
                 key={todo.id}
                 id={todo.id}

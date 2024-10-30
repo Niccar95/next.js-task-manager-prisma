@@ -1,6 +1,7 @@
 "use client";
 import "../../app/globals.css";
 import "../../app/buttons.css";
+import "../../app/todoItem.css";
 import { useState } from "react";
 import { CirclePicker } from "react-color";
 
@@ -42,28 +43,34 @@ const TodoItem = ({
 
   return (
     <>
-      <p className={isCompleted ? "completed" : ""}>{title}</p>
-      <input
-        className="checkBox"
-        id={id}
-        type="checkbox"
-        onChange={handleToggle}
-        defaultChecked={complete}
-      ></input>
-      <label htmlFor={id}></label>
-      <button className="todoButton" onClick={handleDelete}>
-        Delete
-      </button>
+      <article className="listItem">
+        <section className="taskSection">
+          <p className={isCompleted ? "completed" : ""}>{title}</p>
+          <input
+            className="checkBox"
+            id={id}
+            type="checkbox"
+            onChange={handleToggle}
+            defaultChecked={complete}
+          ></input>
+        </section>
 
-      <button className="todoButton" onClick={handleClick}>
-        Edit
-      </button>
+        <section className="toolSection">
+          <button className="todoButton" onClick={handleDelete}>
+            Delete
+          </button>
 
-      {isEditing && (
-        <div className="editModal">
-          <CirclePicker></CirclePicker>
-        </div>
-      )}
+          <button className="todoButton" onClick={handleClick}>
+            Edit
+          </button>
+        </section>
+
+        {isEditing && (
+          <div className="editModal">
+            <CirclePicker></CirclePicker>
+          </div>
+        )}
+      </article>
     </>
   );
 };
