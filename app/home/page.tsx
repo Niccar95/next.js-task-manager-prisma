@@ -1,5 +1,5 @@
 "use client";
-import "../../globals.css";
+import "../../app/globals.css";
 import Navbar from "@/app/components/Navbar";
 import { Column } from "@prisma/client";
 import ColumnList from "@/app/components/ColumnList";
@@ -11,7 +11,7 @@ export default function Page() {
   useEffect(() => {
     const fetchColumns = async () => {
       try {
-        const response = await fetch("/pages/api/columns");
+        const response = await fetch("/api/columns");
         const data = await response.json();
         setColumns(data);
       } catch (error) {
@@ -26,7 +26,7 @@ export default function Page() {
     try {
       const title = prompt("Enter column title:");
       if (!title) return;
-      const response = await fetch("/pages/api/columns", {
+      const response = await fetch("/api/columns", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

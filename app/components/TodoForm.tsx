@@ -11,7 +11,7 @@ const TodoForm = ({ columnId, onAddTodo }: IColumnIdProps) => {
   const handleCreateTodo = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const response = await fetch(`/pages/api/todos`, {
+    const response = await fetch(`/api/todos`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

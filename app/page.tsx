@@ -3,6 +3,7 @@ import React, { FormEvent, useState } from "react";
 import "../app/form.css";
 import "../app/globals.css";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 const Page = () => {
   const [userName, setUserName] = useState<string>("");
@@ -14,31 +15,22 @@ const Page = () => {
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
     setLoader(true);
-    try {
-      const response = await fetch("/pages/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userName, password }),
-      });
-      const result = await response.json();
-      if (response.status === 200) {
-        setLoader(false);
-        router.push("/pages/home");
-      } else {
-        console.error(result.message);
 
-        if (response.status === 404) {
-          setErrorMessage("Invalid username or password.");
-        } else {
-          setErrorMessage(result.message || "Login failed. Please try again.");
-        }
-      }
-    } catch (error) {
-      console.error("An error occurred during login", error);
+    const result = await signIn("credentials", {
+      redirect: false,
+      userName,
+      password,
+    });
+
+    setLoader(false);
+
+    if (result?.error) {
+      setErrorMessage(result.error);
+    } else {
+      router.push("/home");
     }
   };
+
   return (
     <>
       <h1>Login</h1>

@@ -19,7 +19,7 @@ const ColumnItem = ({ column }: IColumnProps) => {
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const response = await fetch(`/pages/api/todos/${column.id}`, {
+        const response = await fetch(`/api/todos/${column.id}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -36,7 +36,7 @@ const ColumnItem = ({ column }: IColumnProps) => {
 
   const handleToggleTodo = async (id: string, complete: boolean) => {
     try {
-      await fetch(`/pages/api/todos`, {
+      await fetch(`/api/todos`, {
         method: "PATCH",
         body: JSON.stringify({ id, complete }),
         headers: {
@@ -59,7 +59,7 @@ const ColumnItem = ({ column }: IColumnProps) => {
         order: index,
       }));
 
-      await fetch(`/pages/api/updateTodos`, {
+      await fetch(`/api/updateTodos`, {
         method: "POST",
         body: JSON.stringify({ todos: reorderedTodos }),
         headers: {
@@ -74,7 +74,7 @@ const ColumnItem = ({ column }: IColumnProps) => {
 
   const handleDeleteTodo = async (id: string) => {
     try {
-      await fetch(`/pages/api/todos`, {
+      await fetch(`/api/todos`, {
         method: "DELETE",
         body: JSON.stringify({ id }),
         headers: {
@@ -84,7 +84,7 @@ const ColumnItem = ({ column }: IColumnProps) => {
       const updatedTodos = todoList.filter((todo) => todo.id !== id);
       const newOrder = getNextOrder(updatedTodos);
 
-      await fetch(`/pages/api/updateTodos`, {
+      await fetch(`'/api/updateTodos`, {
         method: "POST",
         body: JSON.stringify({ todos: newOrder }),
         headers: {
