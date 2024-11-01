@@ -3,33 +3,40 @@
 import Link from "next/link";
 import React from "react";
 import "../../app/navBar.css";
-import { useRouter } from "next/navigation";
+
+import { signOut } from "next-auth/react";
 
 const Navbar = () => {
-  const router = useRouter();
+  //const router = useRouter();
 
-  const handleLogout = async (e: React.MouseEvent) => {
-    e.preventDefault();
-
-    try {
-      const response = await fetch("/pages/api/auth/logout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      });
-
-      if (response.ok) {
-        console.log("Logout successful");
-        router.push("/");
-      } else {
-        console.error("Failed to logout");
-      }
-    } catch (error) {
-      console.error("Error during logout", error);
-    }
+  const handleLogout = () => {
+    signOut({
+      callbackUrl: "/",
+    });
   };
+
+  // const handleLogout = async (e: React.MouseEvent) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const response = await fetch("/api/auth/logout", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       credentials: "include",
+  //     });
+
+  //     if (response.ok) {
+  //       console.log("Logout successful");
+  //       router.push("/");
+  //     } else {
+  //       console.error("Failed to logout");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error during logout", error);
+  //   }
+  // };
 
   return (
     <>

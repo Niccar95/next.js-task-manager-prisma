@@ -5,6 +5,7 @@ export async function middleware(req: NextRequest) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
   if (!token) {
+    console.log("No token found, redirecting...");
     return NextResponse.redirect(new URL("/", req.url));
   }
 
@@ -12,5 +13,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/home", "/about"],
+  matcher: ["/home", "/about", "/new", "/contact"],
 };
