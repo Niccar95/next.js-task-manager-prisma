@@ -25,7 +25,7 @@ const Page = () => {
     setLoader(false);
 
     if (result?.error) {
-      setErrorMessage(result.error);
+      setErrorMessage("Invalid username or password.");
     } else {
       router.push("/home");
     }

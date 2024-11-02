@@ -58,11 +58,11 @@ const TodoItem = ({
         </section>
 
         <section className="toolSection">
-          <button className="todoButton" onClick={handleDelete}>
+          <button className="toolButton" onClick={handleDelete}>
             Delete
           </button>
 
-          <button className="todoButton" onClick={handleClick}>
+          <button className="toolButton" onClick={handleClick}>
             Edit
             <Image
               src={pencilImage}

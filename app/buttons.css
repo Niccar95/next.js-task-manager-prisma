@@ -1,4 +1,4 @@
-.todoButton {
+.toolButton {
     background-color: #151DFF;
     color: white;
     font-weight: bold;
@@ -8,6 +8,6 @@
     }
     
     
-    .todoButton:hover {
+    .toolButton:hover {
       background-color: #0008e2;
       }

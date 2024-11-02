@@ -3,6 +3,7 @@
 import { Column } from "@prisma/client";
 import "../../app/column.css";
 import "../../app/form.css";
+import "../../app/buttons.css";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import { useEffect, useState } from "react";
@@ -104,7 +105,12 @@ const ColumnItem = ({ column }: IColumnProps) => {
 
   return (
     <article className="column">
-      <h2>{column.title}</h2>
+      <section className="topSection">
+        <h2>{column.title}</h2>
+        <section className="toolSection">
+          <button className="toolButton">Delete</button>
+        </section>
+      </section>
       <TodoForm columnId={column.id} onAddTodo={addTodo} />
       <TodoList
         todoList={todoList}

@@ -7,6 +7,8 @@
     overflow-x: auto;
 }
 
+
+
 .column {
     display: flex;
     flex-direction: column;
@@ -17,3 +19,13 @@
     border-radius: 8px;
     margin-bottom: 2rem;
 }
+
+.topSection {
+    display: flex;
+    justify-content: space-between;
+}
+
+.toolSection {
+    display: flex;
+    gap: 1rem;
+  }
