@@ -7,8 +7,6 @@
     overflow-x: auto;
 }
 
-
-
 .column {
     display: flex;
     flex-direction: column;

@@ -10,3 +10,10 @@ export const createColumns = async (title: string) => {
     data: { title },
   });
 };
+
+export const deleteColumns = async (id: string) => {
+  "use server";
+  return await prisma.column.delete({
+    where: { id },
+  });
+};

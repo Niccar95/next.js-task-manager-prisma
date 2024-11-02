@@ -18,7 +18,7 @@ model Todo {
   updatedAt DateTime @updatedAt
   order Int
   columnId String @db.ObjectId 
-  column Column @relation(fields: [columnId], references: [id]) 
+  column Column @relation(fields: [columnId], references: [id], onDelete: Cascade) 
 }
 
 model Column {

@@ -6,14 +6,19 @@ import "../../app/column.css";
 
 interface IColumnListProps {
   columns: Column[];
+  handleDeleteColumn: (id: string) => void;
 }
 
-const ColumnList = ({ columns }: IColumnListProps) => {
+const ColumnList = ({ columns, handleDeleteColumn }: IColumnListProps) => {
   return (
     <>
       <div className="columnWrapper">
         {columns.map((col) => (
-          <ColumnItem key={col.id} column={col}></ColumnItem>
+          <ColumnItem
+            key={col.id}
+            column={col}
+            handleDeleteColumn={handleDeleteColumn}
+          ></ColumnItem>
         ))}
       </div>
     </>

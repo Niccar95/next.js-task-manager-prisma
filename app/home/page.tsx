@@ -11,7 +11,7 @@ export default function Page() {
   useEffect(() => {
     const fetchColumns = async () => {
       try {
-        const response = await fetch("/api/columns");
+        const response = await fetch(`/api/columns`);
         const data = await response.json();
         setColumns(data);
       } catch (error) {
@@ -26,7 +26,7 @@ export default function Page() {
     try {
       const title = prompt("Enter column title:");
       if (!title) return;
-      const response = await fetch("/api/columns", {
+      const response = await fetch(`/api/columns`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -41,12 +41,36 @@ export default function Page() {
     }
   };
 
+  const handleDeleteColumn = async (id: string) => {
+    try {
+      const response = await fetch(`/api/columns`, {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ id }),
+      });
+
+      if (response.ok) {
+        setColumns(columns.filter((column) => column.id !== id));
+      } else {
+        const errorData = await response.json();
+        console.error("Failed to delete column", errorData);
+      }
+    } catch (error) {
+      console.error("Failed to delete column", error);
+    }
+  };
+
   return (
     <>
       <Navbar></Navbar>
       <h1>Task Manager</h1>
       <button onClick={handleCreateColumn}>Add Column</button>
-      <ColumnList columns={columns}></ColumnList>
+      <ColumnList
+        columns={columns}
+        handleDeleteColumn={handleDeleteColumn}
+      ></ColumnList>
     </>
   );
 }

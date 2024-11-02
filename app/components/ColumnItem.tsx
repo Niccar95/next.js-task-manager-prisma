@@ -12,9 +12,10 @@ import { getNextOrder } from "../utils/todoUtils";
 
 interface IColumnProps {
   column: Column;
+  handleDeleteColumn: (id: string) => void;
 }
 
-const ColumnItem = ({ column }: IColumnProps) => {
+const ColumnItem = ({ column, handleDeleteColumn }: IColumnProps) => {
   const [todoList, setTodoList] = useState<Todo[]>([]);
 
   useEffect(() => {
@@ -85,7 +86,7 @@ const ColumnItem = ({ column }: IColumnProps) => {
       const updatedTodos = todoList.filter((todo) => todo.id !== id);
       const newOrder = getNextOrder(updatedTodos);
 
-      await fetch(`'/api/updateTodos`, {
+      await fetch(`/api/updateTodos`, {
         method: "POST",
         body: JSON.stringify({ todos: newOrder }),
         headers: {
@@ -103,12 +104,18 @@ const ColumnItem = ({ column }: IColumnProps) => {
     setTodoList([...todoList, newTodo]);
   };
 
+  const deleteColumn = () => {
+    handleDeleteColumn(column.id);
+  };
+
   return (
     <article className="column">
       <section className="topSection">
         <h2>{column.title}</h2>
         <section className="toolSection">
-          <button className="toolButton">Delete</button>
+          <button className="toolButton" onClick={deleteColumn}>
+            Delete
+          </button>
         </section>
       </section>
       <TodoForm columnId={column.id} onAddTodo={addTodo} />
