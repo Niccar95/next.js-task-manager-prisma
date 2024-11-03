@@ -1,4 +1,8 @@
 
+.reorderGroup {
+    width: 100%;
+}
+
 .columnWrapper {
     display: flex;
     gap: 2rem;

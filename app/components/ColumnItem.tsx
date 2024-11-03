@@ -9,6 +9,7 @@ import TodoList from "./TodoList";
 import { useEffect, useState } from "react";
 import { Todo } from "@prisma/client";
 import { getNextOrder } from "../utils/todoUtils";
+import { Reorder } from "framer-motion";
 
 interface IColumnProps {
   column: Column;
@@ -110,14 +111,16 @@ const ColumnItem = ({ column, handleDeleteColumn }: IColumnProps) => {
 
   return (
     <article className="column">
-      <section className="topSection">
-        <h2>{column.title}</h2>
-        <section className="toolSection">
-          <button className="toolButton" onClick={deleteColumn}>
-            Delete
-          </button>
+      <Reorder.Item value={column} key={column.id}>
+        <section className="topSection">
+          <h2>{column.title}</h2>
+          <section className="toolSection">
+            <button className="toolButton" onClick={deleteColumn}>
+              Delete
+            </button>
+          </section>
         </section>
-      </section>
+      </Reorder.Item>
       <TodoForm columnId={column.id} onAddTodo={addTodo} />
       <TodoList
         todoList={todoList}
