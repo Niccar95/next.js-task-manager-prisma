@@ -45,7 +45,7 @@ const TodoItem = ({
 
   return (
     <>
-      <li className="listItem">
+      <article className="listItem">
         <section className="taskSection">
           <p className={isCompleted ? "completed" : ""}>{title}</p>
           <input
@@ -78,7 +78,7 @@ const TodoItem = ({
             <CirclePicker></CirclePicker>
           </div>
         )}
-      </li>
+      </article>
     </>
   );
 };

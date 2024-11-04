@@ -1,6 +1,5 @@
 "use client";
 import "../../app/globals.css";
-import Navbar from "@/app/components/Navbar";
 import { Column } from "@prisma/client";
 import ColumnList from "@/app/components/ColumnList";
 import { useEffect, useState } from "react";
@@ -64,7 +63,6 @@ export default function Page() {
 
   return (
     <>
-      <Navbar></Navbar>
       <h1>Task Manager</h1>
       <button onClick={handleCreateColumn}>Add Column</button>
       <ColumnList
