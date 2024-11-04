@@ -31,7 +31,9 @@
 
 .reorderSection:active {
     cursor: grabbing;
+    opacity: 0.7;
 }
+
 
 .topSection {
     display: flex;

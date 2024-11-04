@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import "../app/navBar.css";
 import Navbar from "./components/Navbar";
+import { SessionProvider } from "next-auth/react";
 
 export default function RootLayout({
   children,
@@ -14,9 +15,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {pathname !== "/" && <Navbar></Navbar>}
-        <main>{children}</main>
-        <footer></footer>
+        <SessionProvider>
+          {pathname !== "/" && <Navbar></Navbar>}
+          <main>{children}</main>
+          <footer></footer>
+        </SessionProvider>
       </body>
     </html>
   );

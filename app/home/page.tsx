@@ -3,9 +3,14 @@ import "../../app/globals.css";
 import { Column } from "@prisma/client";
 import ColumnList from "@/app/components/ColumnList";
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 
 export default function Page() {
   const [columns, setColumns] = useState<Column[]>([]);
+
+  const { data } = useSession();
+
+  const sessionUser = data?.user;
 
   useEffect(() => {
     const fetchColumns = async () => {
@@ -63,7 +68,7 @@ export default function Page() {
 
   return (
     <>
-      <h1>Task Manager</h1>
+      {data !== null && <h1>Welcome {sessionUser?.name || "User"}!</h1>}
       <button onClick={handleCreateColumn}>Add Column</button>
       <ColumnList
         columns={columns}
