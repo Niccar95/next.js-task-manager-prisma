@@ -18,3 +18,10 @@
   .navListItem:hover {
     text-decoration: underline;
   }
+
+  .sessionLinks {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+  }

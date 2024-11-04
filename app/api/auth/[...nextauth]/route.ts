@@ -23,7 +23,7 @@ const authOptions: AuthOptions = {
           user.hashedPassword &&
           (await bcrypt.compare(credentials.password, user.hashedPassword))
         ) {
-          return { id: user.id, name: user.userName };
+          return { id: user.id, name: user.userName, avatar: user.avatar };
         }
         return null;
       },

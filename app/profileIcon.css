@@ -1,0 +1,15 @@
+.profileIcon {
+border: solid rgb(186, 186, 186);
+width: 50px;
+height: 50px;
+border-radius: 50%;
+cursor: pointer;
+}
+
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
