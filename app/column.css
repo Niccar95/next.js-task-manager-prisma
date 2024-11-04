@@ -22,6 +22,17 @@
     margin-bottom: 2rem;
 }
 
+.reorderSection {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    cursor:grab;
+}
+
+.reorderSection:active {
+    cursor: grabbing;
+}
+
 .topSection {
     display: flex;
     justify-content: space-between;

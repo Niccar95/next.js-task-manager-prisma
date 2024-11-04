@@ -111,7 +111,7 @@ const ColumnItem = ({ column, handleDeleteColumn }: IColumnProps) => {
 
   return (
     <article className="column">
-      <Reorder.Item value={column} key={column.id}>
+      <Reorder.Item value={column} key={column.id} className="reorderSection">
         <section className="topSection">
           <h2>{column.title}</h2>
           <section className="toolSection">
@@ -120,8 +120,9 @@ const ColumnItem = ({ column, handleDeleteColumn }: IColumnProps) => {
             </button>
           </section>
         </section>
+        <TodoForm columnId={column.id} onAddTodo={addTodo} />
       </Reorder.Item>
-      <TodoForm columnId={column.id} onAddTodo={addTodo} />
+
       <TodoList
         todoList={todoList}
         onToggleTodo={handleToggleTodo}
