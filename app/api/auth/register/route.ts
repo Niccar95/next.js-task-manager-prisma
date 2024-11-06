@@ -5,14 +5,14 @@ import bcrypt from "bcrypt";
 
 export const POST = async (req: Request) => {
   try {
-    const { userName, password, avatar = "" } = await req.json();
+    const { userName, password, image = "" } = await req.json();
     if (!userName || !password)
       return NextResponse.json({ message: "Invalid data" }, { status: 422 });
     const hashedPassword = await bcrypt.hash(password, 10);
 
     await connectToDatabase();
     const user = await prisma.user.create({
-      data: { userName, hashedPassword, avatar: avatar || "" },
+      data: { userName, hashedPassword, image: image || "" },
     });
     return NextResponse.json({ user }, { status: 201 });
   } catch (error) {

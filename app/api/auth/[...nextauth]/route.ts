@@ -23,7 +23,7 @@ const authOptions: AuthOptions = {
           user.hashedPassword &&
           (await bcrypt.compare(credentials.password, user.hashedPassword))
         ) {
-          return { id: user.id, name: user.userName, avatar: user.avatar };
+          return { id: user.id, name: user.userName, image: user.image };
         }
         return null;
       },
@@ -33,6 +33,24 @@ const authOptions: AuthOptions = {
     strategy: "jwt",
   },
   secret: process.env.NEXTAUTH_SECRET,
+
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.avatar = user.image;
+      }
+      return token;
+    },
+
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.id as string;
+        session.user.image = token.image as string;
+      }
+      return session;
+    },
+  },
 };
 
 const handler = NextAuth(authOptions);

@@ -9,23 +9,26 @@ import { useSession } from "next-auth/react";
 export default function Page() {
   const [columns, setColumns] = useState<Column[]>([]);
 
-  const { data } = useSession();
+  const { data: session } = useSession();
 
-  const sessionUser = data?.user;
+  const userName = session?.user?.name;
+  const userId = session?.user?.id;
 
   useEffect(() => {
-    const fetchColumns = async () => {
-      try {
-        const response = await fetch(`/api/columns`);
-        const data = await response.json();
-        setColumns(data);
-      } catch (error) {
-        console.error("Failed to fetch columns", error);
-      }
-    };
+    if (userId) {
+      const fetchColumns = async () => {
+        try {
+          const response = await fetch(`/api/columns?userId=${userId}`);
+          const data = await response.json();
+          setColumns(data);
+        } catch (error) {
+          console.error("Failed to fetch columns", error);
+        }
+      };
 
-    fetchColumns();
-  }, []);
+      fetchColumns();
+    }
+  }, [userId]);
 
   const handleCreateColumn = async () => {
     try {
@@ -36,7 +39,7 @@ export default function Page() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ title }),
+        body: JSON.stringify({ title, userId }),
       });
 
       const newColumn = await response.json();
@@ -69,7 +72,7 @@ export default function Page() {
 
   return (
     <>
-      {data !== null && <h1>Welcome {sessionUser?.name || "User"}!</h1>}
+      {session !== null && <h1>Welcome {userName || "User"}!</h1>}
       <button onClick={handleCreateColumn}>Add Column</button>
       <ColumnList
         columns={columns}

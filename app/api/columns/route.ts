@@ -5,9 +5,19 @@ import {
 } from "@/app/services/columnService";
 import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async () => {
+export const GET = async (req: NextRequest) => {
   try {
-    const columns = await getColumns();
+    const url = new URL(req.url);
+    const userId = url.searchParams.get("userId");
+
+    if (!userId) {
+      return NextResponse.json(
+        { success: false, error: "userId is required" },
+        { status: 400 }
+      );
+    }
+
+    const columns = await getColumns(userId);
     return NextResponse.json(columns);
   } catch (error) {
     const err = error as Error;
@@ -21,9 +31,9 @@ export const GET = async () => {
 export const POST = async (req: NextRequest) => {
   try {
     const body = await req.json();
-    const { title } = body;
+    const { title, userId } = body;
 
-    const column = await createColumns(title);
+    const column = await createColumns(title, userId);
     return NextResponse.json(column);
   } catch (error) {
     const err = error as Error;
