@@ -25,13 +25,42 @@ form {
   button {
     background-color: #151DFF;
     color: white;
+    font-size: 13px;
     font-weight: bold;
     border: none;
     padding: 1rem 3rem;
     cursor: pointer;
+    text-transform: uppercase;
     }
-    
-    
+     
     button:hover {
       background-color: #0008e2;
+      }
+
+      .checkBox {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+    
+      .uploadLabel {
+        display: inline-block;
+        font-size: 13px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: white;
+        background-color:#151DFF;
+        text-align: center;
+        padding: 1rem 3rem;
+        cursor: pointer;
+      }
+
+      .uploadLabel:hover {
+        background-color: #0008e2;
+      }
+
+
+      .uploadButton {
+        display: none;
+      
       }

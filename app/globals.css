@@ -20,14 +20,11 @@ main {
   padding: 2rem;
 }
 
-
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
-
-
 
 a {
   color: rgb(70, 70, 70);
@@ -43,33 +40,11 @@ ul {
   list-style: none;
 }
 
-button {
-background-color: #151DFF;
-color: white;
-font-weight: bold;
-border: none;
-padding: 1rem 3rem;
-cursor: pointer;
-}
-
-
-button:hover {
-  background-color: #0008e2;
-  }
-
-  .checkBox {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-  }
-
-
   footer {
     border-top: solid rgb(192, 192, 192) 1px;
     height: 200px;
     padding: 2em;
   }
-
 
   .editModal {
     background-color: white;
@@ -77,13 +52,11 @@ button:hover {
     box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.2);
   }
 
-
   .spinnerWrapper {
     display: flex;
     justify-content: center;
   }
-
-
+ 
   .spinner {
     width: 100px;
     height: 100px;

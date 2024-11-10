@@ -3,6 +3,8 @@
 import Link from "next/link";
 import React from "react";
 import "../../app/navBar.css";
+import "../../app/globals.css";
+import "../../app/profileIcon.css";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";

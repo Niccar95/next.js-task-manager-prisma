@@ -1,6 +1,7 @@
 "use client";
 import "../../app/globals.css";
 import "../../app/profileIcon.css";
+import "../../app/form.css";
 import { Column } from "@prisma/client";
 import ColumnList from "@/app/components/ColumnList";
 import { useEffect, useState } from "react";
