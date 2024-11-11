@@ -59,6 +59,11 @@ form {
         background-color: #0008e2;
       }
 
+      .uploadLabel i {
+        font-size: 1rem;
+        margin-right: 8px;
+      }
+
 
       .uploadButton {
         display: none;

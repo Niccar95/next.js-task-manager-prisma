@@ -4,6 +4,8 @@ import "../../app/globals.css";
 import "../../app/form.css";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import EditUser from "../components/EditUser";
 
 const Page = () => {
   const { data: session } = useSession();
@@ -19,6 +21,7 @@ const Page = () => {
       setIsEditing(false);
     }
   };
+
   return (
     <>
       {isEditing === false && (
@@ -51,23 +54,7 @@ const Page = () => {
 
       {isEditing === true && (
         <>
-          <h1>Edit profile</h1>
-          <form>
-            <label htmlFor="textInput">Change display name: </label>
-            <input id="textInput" className="textInput" type="text"></input>
-
-            <label className="uploadLabel" htmlFor="uploadButton">
-              Upload image
-            </label>
-            <input
-              className="uploadButton"
-              type="file"
-              id="uploadButton"
-              name="Image"
-            ></input>
-
-            <button type="submit">Save Changes</button>
-          </form>
+          <EditUser></EditUser>
         </>
       )}
     </>
